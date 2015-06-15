@@ -6,15 +6,25 @@
         </a>
 
         <ul class="uk-navbar-nav uk-visible-large">
-            <li><a href="docs/documentation_get-started.html">Get Started</a></li>
-            <li><a href="docs/core.html">Core</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="listmanager">List Manage</a></li>
         </ul>
         <div class="uk-navbar-content uk-hidden-small uk-navbar-flip">
-            <form class="uk-form uk-margin-remove uk-display-inline-block">
-                <input type="text" placeholder="username">
-                <input type="password" placeholder="password">
-                <button class="uk-button uk-button-primary">Login</button>
-            </form>
+            @if(!Auth::check())
+                <form method="post" action="/auth" class="uk-form uk-margin-remove uk-display-inline-block">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input name="username" type="text" placeholder="User Name">
+                    <input name="password" type="password" placeholder="password">
+                    <button class="uk-button uk-button-primary">Login</button>
+                </form>
+            @else
+                <ul class="uk-navbar-nav uk-visible-large">
+                    <li><a href="#">
+                            <strong>Hi,{{ Auth::user()['username'] }}</strong>
+                        </a></li>
+                    <li><a name="logout" href="/logout">Logout</a></li>
+                </ul>
+            @endif
         </div>
         <a href="#tm-offcanvas" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas></a>
 

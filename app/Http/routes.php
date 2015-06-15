@@ -14,3 +14,18 @@
 Route::get('/', function () {
     return view('list.index');
 });
+
+Route::post('auth', array(
+    'as' => 'auth.login',
+    'uses' => 'AuthenticationController@login'
+));
+
+Route::get('logout', array(
+    'as' => 'auth.logout',
+    'uses' => 'AuthenticationController@logout'
+));
+
+Route::get('listmanager', array(
+    'as' => 'listmanager.index',
+    'uses' => 'ListManagerController@index'
+));
