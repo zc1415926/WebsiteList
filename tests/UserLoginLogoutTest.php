@@ -21,4 +21,5 @@ class UserLoginLogoutTest extends TestCase{
             ->onPage('/');
 
     }
+
 }

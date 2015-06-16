@@ -17,7 +17,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var string
      */
-    protected $table = 'user';
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -32,4 +32,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    /**
+     * A user can have many catatories
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function catatories()
+    {
+        return $this->hasMany('App\Catagory');
+    }
 }

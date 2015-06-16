@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Catagory;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
+use Auth;
 
 class ListManagerController extends Controller
 {
@@ -20,7 +23,11 @@ class ListManagerController extends Controller
      */
     public function index()
     {
-        return view('manager.index');
+
+        $user = Auth::user();
+        $catagories = $user->catatories()->get();
+
+        return view('manager.index', compact('catagories'));
     }
 
     /**
