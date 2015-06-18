@@ -10,21 +10,14 @@
         @foreach($catagories as $catagory)
             <li class="uk-grid-margin">
                 <div class="uk-panel uk-panel-box">
-                    <i class="uk-sortable-handle uk-icon uk-icon-bars uk-margin-small-right"></i>
+                    <i class="uk-sortable-handle uk-icon uk-icon-arrows uk-margin-small-right"></i>
                     {{ $catagory->catagory_name }}
+                    <a href="#" class="uk-icon-hover uk-icon-pencil uk-margin-small-left"></a>
+                    <a href="#" class="uk-icon-hover uk-icon-close uk-margin-small-left"></a>
                 </div>
             </li>
 
         @endforeach
-
-
-        <li class="uk-grid-margin"><div class="uk-panel uk-panel-box"><i class="uk-sortable-handle uk-icon uk-icon-bars uk-margin-small-right"></i>Item 10</div></li>
-        <li class="uk-grid-margin"><div class="uk-panel uk-panel-box"><i class="uk-sortable-handle uk-icon uk-icon-bars uk-margin-small-right"></i>Item 3</div></li><li class="uk-grid-margin"><div class="uk-panel uk-panel-box"><i class="uk-sortable-handle uk-icon uk-icon-bars uk-margin-small-right"></i>Item 4</div></li>
-        <li class="uk-grid-margin"><div class="uk-panel uk-panel-box"><i class="uk-sortable-handle uk-icon uk-icon-bars uk-margin-small-right"></i>Item 5</div></li>
-        <li class="uk-grid-margin"><div class="uk-panel uk-panel-box"><i class="uk-sortable-handle uk-icon uk-icon-bars uk-margin-small-right"></i>Item 6</div></li>
-        <li class="uk-grid-margin"><div class="uk-panel uk-panel-box"><i class="uk-sortable-handle uk-icon uk-icon-bars uk-margin-small-right"></i>Item 2</div></li><li class="uk-grid-margin"><div class="uk-panel uk-panel-box"><i class="uk-sortable-handle uk-icon uk-icon-bars uk-margin-small-right"></i>Item 7</div></li>
-        <li class="uk-grid-margin"><div class="uk-panel uk-panel-box"><i class="uk-sortable-handle uk-icon uk-icon-bars uk-margin-small-right"></i>Item 8</div></li>
-        <li class="uk-grid-margin"><div class="uk-panel uk-panel-box"><i class="uk-sortable-handle uk-icon uk-icon-bars uk-margin-small-right"></i>Item 9</div></li>
 
     </ul>
 @stop
