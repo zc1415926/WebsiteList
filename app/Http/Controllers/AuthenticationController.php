@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
+use Laracasts\Flash\Flash;
 
 
 class AuthenticationController extends Controller
@@ -19,6 +20,8 @@ class AuthenticationController extends Controller
 
             return redirect('listmanager');
         }
+
+        Flash::danger('Maybe your username or password is wrong!');
 
         return redirect('/');
     }
