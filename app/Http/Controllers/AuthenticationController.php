@@ -17,7 +17,7 @@ class AuthenticationController extends Controller
         if(Auth::attempt(['username'=>$request['username'],
                         'password'=>$request['password']]))
         {
-
+            Flash::success("Welcome, " . $request['username'] . "!");
             return redirect('listmanager');
         }
 

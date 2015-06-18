@@ -26,7 +26,7 @@ class ListManagerController extends Controller
         $user = Auth::user();
         $catagories = $user->catatories()->get();
 
-        Flash::success("Welcome, " . $user->username . "!");
+
 
         return view('manager.index', compact('catagories'));
     }
