@@ -29,3 +29,8 @@ Route::get('listmanager', array(
     'as' => 'listmanager.index',
     'uses' => 'ListManagerController@index'
 ));
+
+Route::post('catagory/edit', array(
+    'as' => 'catagory.edit',
+    'uses' => 'CatagoryController@edit'
+));

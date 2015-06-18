@@ -1,0 +1,19 @@
+div#modalEditCatagory
+{
+    color: #666 !important;
+    text-align: left;
+}
+.uk-modal-header h2 {
+    color: #222 !important;
+}
+
+.uk-form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.zc-modal-form-footer
+{
+    padding-bottom: 0px;
+}
