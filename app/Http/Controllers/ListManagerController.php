@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Auth;
+use Laracasts\Flash\Flash;
 
 class ListManagerController extends Controller
 {
@@ -20,8 +21,12 @@ class ListManagerController extends Controller
     public function index()
     {
 
+
+
         $user = Auth::user();
         $catagories = $user->catatories()->get();
+
+        Flash::success("Welcome, " . $user->username . "!");
 
         return view('manager.index', compact('catagories'));
     }
