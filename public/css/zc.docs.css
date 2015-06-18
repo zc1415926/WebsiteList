@@ -17,3 +17,10 @@ div#modalEditCatagory
 {
     padding-bottom: 0px;
 }
+
+.uk-form-width-large.error
+{
+    border-color: #dc8d99!important;
+    background: #fff7f8!important;
+    color: #d85030!important;
+}

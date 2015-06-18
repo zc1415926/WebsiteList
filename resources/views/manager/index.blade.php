@@ -1,5 +1,23 @@
 @extends('layouts.default')
 @section('content')
+    <script>
+        //var validatorCatagoryName;
+        $(document).ready(function()
+        {
+            $.validator.messages.required = "";
+            //validatorCatagoryName =
+            $('#form-edit-catagory').validate(
+                    {
+                        rules:
+                        {
+                            'catagory_name':"required"
+
+                        }
+                    }
+            );
+        });
+    </script>
+
     <h1>You can manage the list here!</h1>
 
 
@@ -26,9 +44,9 @@
         <div class="uk-modal-dialog">
             <button type="button" class="uk-modal-close uk-close"></button>
             <div class="uk-modal-header">
-                <h2>Reanem the Catagory: </h2>
+                <h2>Rename the Catagory: </h2>
             </div>
-            <form method="post" action="/catagory/edit" class="uk-form">
+            <form method="post" action="/catagory/edit" id="form-edit-catagory" class="uk-form">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input id="catagory_id" name="catagory_id" type="hidden" value="{{ $catagory->id }}">
                 <label class="uk-form-label" for="catagory_name">New Catagory Name: </label>
@@ -38,7 +56,7 @@
                 </div>
                 <div class="uk-modal-footer uk-text-right zc-modal-form-footer">
                     <button type="button" class="uk-button uk-modal-close">Cancel</button>
-                    <button type="submit" class="uk-button uk-button-primary">Submit</button>
+                    <button type="button" class="uk-button uk-button-primary" onclick="onRenameCatagorySubmit()">Submit</button>
                 </div>
             </form>
 
@@ -46,6 +64,19 @@
     </div>
 
     <script>
+        function onRenameCatagorySubmit()
+        {
+            if($('#form-edit-catagory').valid())
+            {
+                $('#form-edit-catagory').submit();
+            }
+            else
+            {
+                UIkit.notify("Please fill the form correctly!", 'danger');
+            }
+
+        }
+
         //UIkit.modal("#modalEditCatagory").show();
         function onEditCatatoryClick(catagoryId, catagory_name)
         {
