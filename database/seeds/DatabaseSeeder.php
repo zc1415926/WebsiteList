@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call('UserTableSeeder');
         $this->call('CatagoriesTableSeeder');
         $this->call('ListsTableSeeder');
+        $this->call('CatagoryOrderSeeder');
         Model::reguard();
     }
 }
