@@ -5,7 +5,7 @@
         $(document).ready(function()
         {
             $.validator.messages.required = "";
-            //validatorCatagoryName =
+            //validatorCatagoryName =formDeleteCatagory
             $('#form-edit-catagory').validate(
                     {
                         rules:
@@ -15,6 +15,16 @@
                         }
                     }
             );
+            $('#formAddCatagory').validate(
+                    {
+                        rules:
+                        {
+                            'catagory_name':"required"
+
+                        }
+                    }
+            );
+
         });
     </script>
 
@@ -31,13 +41,20 @@
                     <i class="uk-sortable-handle uk-icon uk-icon-arrows uk-margin-small-right"></i>
                     {{ $catagory->catagory_name }}
                     <a href="#" class="uk-icon-hover uk-icon-pencil uk-margin-small-left"
-                       onclick="onEditCatatoryClick('{{ $catagory->id }}', '{{ $catagory->catagory_name }}')"></a>
-                    <a href="#" class="uk-icon-hover uk-icon-close uk-margin-small-left"></a>
+                       onclick="onEditCatatoryClicked('{{ $catagory->catagory_name }}')"></a>
+                    <a href="#" class="uk-icon-hover uk-icon-close uk-margin-small-left"
+                       onclick="onDeleteCatagoryClicked('{{ $catagory->catagory_name }}')"></a>
                 </div>
             </li>
 
         @endforeach
 
+        <li class="uk-grid-margin">
+            <div class="uk-panel uk-panel-box">
+                <a href="#" class="uk-icon-hover uk-icon-small uk-icon-plus uk-margin-small-left"
+                   onclick="onAddCatagoryClicked()"></a>
+            </div>
+        </li>
     </ul>
 
     <div id="modalEditCatagory" class="uk-modal" aria-hidden="true" style="display: none; overflow-y: scroll;">
@@ -63,7 +80,73 @@
         </div>
     </div>
 
+    <div id="modalAddCatagory" class="uk-modal" aria-hidden="true" style="display: none; overflow-y: scroll;">
+        <div class="uk-modal-dialog">
+            <button type="button" class="uk-modal-close uk-close"></button>
+            <div class="uk-modal-header">
+                <h2>Add New Catagory</h2>
+            </div>
+            <form method="post" action="/catagory/add" id="formAddCatagory" class="uk-form">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <label class="uk-form-label" for="catagory_name">New Catagory Name: </label>
+                <div class="uk-form-controls">
+                    <input id="catagory_name" name="catagory_name" class="uk-form-width-large" type="text"
+                           placeholder="Enter your new catagory name here.">
+                </div>
+                <div class="uk-modal-footer uk-text-right zc-modal-form-footer">
+                    <button type="button" class="uk-button uk-modal-close">Cancel</button>
+                    <button type="button" class="uk-button uk-button-primary" onclick="onAddCatagorySubmit()">Add</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <div id="modalDeleteCatagory" class="uk-modal" aria-hidden="true" style="display: none; overflow-y: scroll;">
+        <div class="uk-modal-dialog">
+            <button type="button" class="uk-modal-close uk-close"></button>
+            <div class="uk-modal-header">
+                <h2>Confirmation</h2>
+            </div>
+            <p>Are you sure to delete the catagory: </p>
+            <form method="post" action="/catagory/delete" id="formDeleteCatagory" class="uk-form">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input name="catagory_id" type="hidden" value="{{ $catagory->id }}">
+                <input name="catagory_name" type="hidden" value="{{ $catagory->catagory_name }}">
+                <div class="uk-modal-footer uk-text-right zc-modal-form-footer">
+                    <button type="button" class="uk-button uk-modal-close">Cancel</button>
+                    <button type="submit" class="uk-button uk-button-danger">Delete</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
     <script>
+
+        function onDeleteCatagoryClicked(catagory_name)
+        {
+            $('#modalDeleteCatagory p').text("Are you sure to delete the catagory: " + catagory_name);
+            UIkit.modal("#modalDeleteCatagory").show();
+        }
+
+        function onAddCatagoryClicked()
+        {
+            UIkit.modal("#modalAddCatagory").show();
+        }
+
+        function onAddCatagorySubmit()
+        {
+            if($('#formAddCatagory').valid())
+            {
+                $('#formAddCatagory').submit();
+            }
+            else
+            {
+                UIkit.notify("Please enter you catagory name!", 'danger');
+            }
+        }
+
         function onRenameCatagorySubmit()
         {
             if($('#form-edit-catagory').valid())
@@ -78,7 +161,7 @@
         }
 
         //UIkit.modal("#modalEditCatagory").show();
-        function onEditCatatoryClick(catagoryId, catagory_name)
+        function onEditCatatoryClicked(catagory_name)
         {
             $('#modalEditCatagory h2').text("Reanem the Catagory: " + catagory_name);
             UIkit.modal("#modalEditCatagory").show();

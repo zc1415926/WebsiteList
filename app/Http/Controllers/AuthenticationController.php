@@ -28,6 +28,8 @@ class AuthenticationController extends Controller
 
     public function logout()
     {
+        Flash::message('You have logged out!');
+
         Auth::logout();
         return redirect('/');
     }

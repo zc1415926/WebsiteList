@@ -34,3 +34,13 @@ Route::post('catagory/edit', array(
     'as' => 'catagory.edit',
     'uses' => 'CatagoryController@edit'
 ));
+
+Route::post('catagory/add', array(
+    'as' => 'catagory.add',
+    'uses' => 'CatagoryController@add'
+));
+
+Route::post('catagory/delete', array(
+    'as' => 'catagory.delete',
+    'uses' => 'CatagoryController@delete'
+));

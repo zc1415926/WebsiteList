@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Laracasts\Flash\Flash;
 
 class Authenticate
 {
@@ -38,6 +39,8 @@ class Authenticate
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
+
+                Flash::warning('Please login first!');
                 return redirect()->guest('/');
             }
         }
