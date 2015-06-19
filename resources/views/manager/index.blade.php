@@ -34,7 +34,7 @@
 
 
 
-    <ul class="uk-sortable uk-grid uk-grid-small uk-grid-width-1-4" data-uk-sortable="{handleClass:'uk-sortable-handle'}">
+    <ul id="catagorySortable" class="uk-sortable uk-grid uk-grid-small uk-grid-width-1-4" data-uk-sortable="{handleClass:'uk-sortable-handle'}">
         @foreach($catagories as $catagory)
             <li class="uk-grid-margin">
                 <div class="uk-panel uk-panel-box">
@@ -60,6 +60,11 @@
     @include('manager.partials.modal')
 
     <script>
+        $("#catagorySortable").bind("change.uk.sortable", function(data){
+            UIkit.notify("you have changed the order of catagories", 'warning');
+            //console.log($('.uk-panel.uk-panel-box').index($('.uk-panel.uk-panel-box:contains("Download")')););
+        });
+
         /**
          * Add catagory section
          *
