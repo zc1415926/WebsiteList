@@ -14,8 +14,8 @@
     <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/uikit/2.21.0/js/uikit.min.js"></script>
     <script src="../js/docs.js"></script>
-    <script src="../js/components/notify.js"></script>
-    <script src="../js/components/sortable.js"></script>
+    <script src="//cdn.bootcss.com/uikit/2.21.0/js/components/notify.min.js"></script>
+    <script src="//cdn.bootcss.com/uikit/2.21.0/js/components/sortable.min.js"></script>
     <script src="http://cdn.bootcss.com/jquery-validate/1.13.1/jquery.validate.min.js"></script>
 </head>
 
