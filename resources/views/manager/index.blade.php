@@ -39,7 +39,7 @@
             <li class="uk-grid-margin">
                 <div class="uk-panel uk-panel-box">
                     <i class="uk-sortable-handle uk-icon uk-icon-arrows uk-margin-small-right"></i>
-                    <span>{{ $catagory->catagory_name }}</span>
+                    <span id="{{ $catagory->id }}">{{ $catagory->catagory_name }}</span>
                     <a href="#" class="uk-icon-hover uk-icon-pencil uk-margin-small-left"
                        onclick="onEditCatatoryClicked('{{ $catagory->catagory_name }}')"></a>
                     <a href="#" class="uk-icon-hover uk-icon-close uk-margin-small-left"
@@ -63,6 +63,21 @@
         $("#catagorySortable").bind("change.uk.sortable", function(data){
             UIkit.notify("you have changed the order of catagories", 'warning');
             //console.log($('.uk-panel.uk-panel-box').index($('.uk-panel.uk-panel-box:contains("Download")')););
+            var catagoryArr = new Array();
+
+
+            $(".uk-panel.uk-panel-box span").each(function(){
+                catagoryArr.push({'id' : $(this).attr('id'), 'txt' : $(this).text()});
+                //console.log($(this).text());
+            });
+
+            catagoryArr.pop();//不知道为什么会多出最后一个项，与前边的某一个项重复
+
+            catagoryArr.forEach(function(catagory){
+                console.log(catagory['id'] + ": " + catagory['txt']);
+               // console.log("??");
+            });
+            //console.log(catagoryArr);
         });
 
         /**
