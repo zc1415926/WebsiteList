@@ -14,25 +14,25 @@ class CatagoryOrderSeeder extends Seeder
         DB::table('catagory_order')->insert([
             'catagory_id'   => 1,
             'user_id'       => 1,
-            'catagory_order' => 2
+            'catagory_order' => 1
         ]);
 
         DB::table('catagory_order')->insert([
             'catagory_id'   => 2,
             'user_id'       => 1,
-            'catagory_order' => 1
+            'catagory_order' => 0
         ]);
 
         DB::table('catagory_order')->insert([
             'catagory_id'   => 3,
             'user_id'       => 2,
-            'catagory_order' => 2
+            'catagory_order' => 1
         ]);
 
         DB::table('catagory_order')->insert([
             'catagory_id'   => 4,
             'user_id'       => 2,
-            'catagory_order' => 1
+            'catagory_order' => 0
         ]);
     }
 }
