@@ -57,8 +57,8 @@
         <p>Are you sure to delete the catagory: </p>
         <form method="post" action="/catagory/delete" id="formDeleteCatagory" class="uk-form">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <input name="catagory_id" type="hidden" value="{{ $catagory->id }}">
-            <input name="catagory_name" type="hidden" value="{{ $catagory->catagory_name }}">
+            <input id="delCatagoryId" name="catagory_id" type="hidden" value="">
+            <input id="delCatagoryName" name="catagory_name" type="hidden" value="">
             <div class="uk-modal-footer uk-text-right zc-modal-form-footer">
                 <button type="button" class="uk-button uk-modal-close">Cancel</button>
                 <button type="submit" class="uk-button uk-button-danger">Delete</button>

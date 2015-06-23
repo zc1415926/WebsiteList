@@ -43,7 +43,7 @@
                     <a href="#" class="uk-icon-hover uk-icon-pencil uk-margin-small-left"
                        onclick="onEditCatatoryClicked('{{ $catagory->catagory_name }}')"></a>
                     <a href="#" class="uk-icon-hover uk-icon-close uk-margin-small-left"
-                       onclick="onDeleteCatagoryClicked('{{ $catagory->catagory_name }}')"></a>
+                       onclick="onDeleteCatagoryClicked('{{ $catagory->id }}', '{{ $catagory->catagory_name }}')"></a>
                 </div>
             </li>
 
@@ -116,9 +116,11 @@
          *
          * @param catagory_name
          */
-        function onDeleteCatagoryClicked(catagory_name)
+        function onDeleteCatagoryClicked(catagoryId, catagory_name)
         {
             $('#modalDeleteCatagory p').text("Are you sure to delete the catagory: " + catagory_name);
+            $('#delCatagoryId').attr('value', catagoryId);
+            $('#delCatagoryName').attr('value', catagory_name);
             UIkit.modal("#modalDeleteCatagory").show();
         }
     </script>

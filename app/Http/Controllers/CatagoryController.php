@@ -70,10 +70,37 @@ class CatagoryController extends Controller
 
     public function delete(Request $request)
     {
-        //dd($request['catagory_name']);
-        if(Catagory::destroy($request['catagory_id']))
+        $user_id = Auth::user()->id;
+        $deleteCatagoryId = $request['catagory_id'];
+        //dd($deleteCatagoryId);
+        $deletedRequestOrder = DB::select('
+            SELECT
+                catagory_order.catagory_order
+            FROM
+                catagory_order
+            WHERE
+                catagory_order.catagory_id = ?', [$deleteCatagoryId]
+        );
+        //dd($deletedRequestOrder[0]->catagory_order);
+
+
+        if(Catagory::destroy($deleteCatagoryId) && CatagoryOrder::destroy(['catagory_id' => $deleteCatagoryId]))
         {
-            Flash::success("Success to delete the catagory !");
+            $updateCatagoryOrder = DB::update('
+                UPDATE catagory_order
+                SET catagory_order.catagory_order = catagory_order.catagory_order - 1
+                WHERE
+                    catagory_order.catagory_order > ?
+                AND catagory_order.user_id = ?', [$deletedRequestOrder[0]->catagory_order, $user_id]
+            );
+
+            if($updateCatagoryOrder)
+            {
+                Flash::success("Success to delete the catagory !");
+                return redirect('listmanager');
+            }
+
+            Flash::danger("Failure to delete the catagory!");
             return redirect('listmanager');
         }
 
