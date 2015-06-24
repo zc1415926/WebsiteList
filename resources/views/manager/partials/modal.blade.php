@@ -31,7 +31,7 @@
         </div>
         <form method="post" action="/catagory/edit" id="form-edit-catagory" class="uk-form">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <input id="catagory_id" name="catagory_id" type="hidden" value="{{ $catagory->id }}">
+            <input id="catagory_id" name="catagory_id" type="hidden" value="">
             <label class="uk-form-label" for="catagory_name">New Catagory Name: </label>
             <div class="uk-form-controls">
                 <input id="catagory_name" name="catagory_name" class="uk-form-width-large" type="text"

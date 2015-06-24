@@ -41,7 +41,7 @@
                     <i class="uk-sortable-handle uk-icon uk-icon-arrows uk-margin-small-right"></i>
                     <span id="{{ $catagory->id }}">{{ $catagory->catagory_name }}</span>
                     <a href="#" class="uk-icon-hover uk-icon-pencil uk-margin-small-left"
-                       onclick="onEditCatatoryClicked('{{ $catagory->catagory_name }}')"></a>
+                       onclick="onEditCatatoryClicked('{{ $catagory->id }}', '{{ $catagory->catagory_name }}')"></a>
                     <a href="#" class="uk-icon-hover uk-icon-close uk-margin-small-left"
                        onclick="onDeleteCatagoryClicked('{{ $catagory->id }}', '{{ $catagory->catagory_name }}')"></a>
                 </div>
@@ -138,9 +138,11 @@
          *
          * @param catagory_name
          */
-        function onEditCatatoryClicked(catagory_name)
+        function onEditCatatoryClicked(catagory_id, catagory_name)
         {
             $('#modalEditCatagory h2').text("Reanem the Catagory: " + catagory_name);
+            $('#modalEditCatagory #catagory_name').val(catagory_name);
+            $('#modalEditCatagory #catagory_id').val(catagory_id);
             UIkit.modal("#modalEditCatagory").show();
         }
 
