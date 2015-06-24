@@ -108,4 +108,26 @@ class CatagoryController extends Controller
         return redirect('listmanager');
     }
 
+    public function reorder(Request $request)
+    {
+        $newOrder = $request['order'];
+        $reorderResult = true;
+        for($i = 0; $i<count($newOrder); $i++)
+        {
+            $reorderResult = $reorderResult && CatagoryOrder::where('catagory_id', $newOrder[$i]['id'])
+                         ->update(['catagory_order' => $i]);
+        }
+
+        if($reorderResult)
+        {
+            return redirect('listmanager');
+        }
+        else
+        {
+            return redirect('listmanager');
+        }
+        //dd($reorderResult);
+        //return response($request);
+    }
+
 }

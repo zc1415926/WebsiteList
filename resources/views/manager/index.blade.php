@@ -60,10 +60,11 @@
     @include('manager.partials.modal')
 
     <script>
+        var catagoryArr = new Array();
+
         $("#catagorySortable").bind("change.uk.sortable", function(data){
-            UIkit.notify("you have changed the order of catagories", 'warning');
-            //console.log($('.uk-panel.uk-panel-box').index($('.uk-panel.uk-panel-box:contains("Download")')););
-            var catagoryArr = new Array();
+            //UIkit.notify("you have changed the order of catagories", 'warning');
+
 
 
             $(".uk-panel.uk-panel-box span").each(function(){
@@ -71,14 +72,44 @@
                 //console.log($(this).text());
             });
 
-            catagoryArr.pop();//不知道为什么会多出最后一个项，与前边的某一个项重复
+            //不知道为什么会多出最后一个项，与前边的某一个项重复
+            catagoryArr.pop();
+            /*for(var i=0; i<catagoryArr.length-1; i++)
+            {
+                console.log("id: " + catagoryArr[i]['id'] + " new order: " + i);
+            }*/
 
-            catagoryArr.forEach(function(catagory){
-                console.log(catagory['id'] + ": " + catagory['txt']);
-               // console.log("??");
-            });
-            //console.log(catagoryArr);
+            var strConfirm = "Save new catagory order?" +
+                     "<a href='#' class='uk-icon-small uk-icon-hover uk-icon-close uk-margin-large-left uk-margin-small-right '></a>" +
+                     "<a onclick='onSaveCatagoryClicked()' href='#' class='uk-icon-small'><i class='uk-icon-check'></i></a>";
+
+            UIkit.notify(strConfirm, {timeout: 0, status: 'danger'});
         });
+
+        function onSaveCatagoryClicked()
+        {
+            $.ajax({
+                type: "post",
+                url: "/catagory/reorder",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                data: {'order': catagoryArr},
+
+                success: function(data)
+                {
+                    UIkit.notify('Success to reorder the catagory!', 'success');
+                    //console.log(data);
+                    //document.write(data);
+                },
+                error: function(data)
+                {
+                    UIkit.notify('Error to reorder the catagory!', 'danger');
+                    console.log('reorder error!');
+                    console.log(data);
+                }
+            })
+        }
 
         /**
          * Add catagory section
@@ -123,7 +154,6 @@
             {
                 UIkit.notify("Please fill the form correctly!", 'danger');
             }
-
         }
 
         /**

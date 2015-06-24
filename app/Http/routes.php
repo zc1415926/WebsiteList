@@ -44,3 +44,8 @@ Route::post('catagory/delete', array(
     'as' => 'catagory.delete',
     'uses' => 'CatagoryController@delete'
 ));
+
+Route::post('catagory/reorder', array(
+    'as' => 'catagory.reorder',
+    'uses' => 'CatagoryController@reorder'
+));

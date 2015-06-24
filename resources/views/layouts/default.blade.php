@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_token" content="{{ csrf_token() }}">
     <title>WebsiteList</title>
     <link rel="shortcut icon" href="docs/images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon-precomposed" href="docs/images/apple-touch-icon.png">
@@ -14,9 +15,9 @@
     <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/uikit/2.21.0/js/uikit.min.js"></script>
     <script src="../js/docs.js"></script>
-    <script src="//cdn.bootcss.com/uikit/2.21.0/js/components/notify.min.js"></script>
     <script src="//cdn.bootcss.com/uikit/2.21.0/js/components/sortable.min.js"></script>
     <script src="http://cdn.bootcss.com/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+    <script src="../js/components/notify.js"></script>
 </head>
 
 <body class="tm-background">
