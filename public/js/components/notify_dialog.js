@@ -1,3 +1,11 @@
+/**
+ * zc1415926's custom version of uikit's notify.js
+ * 1.use UIkit.notify_dialog() can call a uikit's notify which don't have the "X" close button
+ * 2.cancel the close notify function when click the body of notify_dialog
+ * 3.set default close timeout to 0, so the notify_dialog will not disapear automatically
+ * 4.the notify_dialog message can't be in the same queue with the normal notify message
+ * 5.other usage method is the same as normal notify.js
+ */
 (function(addon) {
 
     var component;
@@ -19,7 +27,7 @@
     var containers = {},
         messages   = {},
 
-        notify     =  function(options){
+        notify_dialog     =  function(options){
 
             if (UI.$.type(options) == 'string') {
                 options = { message: options };
@@ -52,7 +60,7 @@
         this.element = UI.$([
 
             '<div class="uk-notify-message">',
-                '<a class="uk-close"></a>',
+                //'<a class="uk-close"></a>',
                 '<div></div>',
             '</div>'
 
@@ -76,7 +84,7 @@
                 var message = UI.$(this).data("notifyMessage");
 
                 message.element.trigger('manualclose.uk.notify', [message]);
-                message.close();
+               // message.close();
             });
         }
     };
@@ -176,15 +184,15 @@
     Message.defaults = {
         message: "",
         status: "",
-        timeout: 5000,
+        timeout: 0,
         group: null,
         pos: 'top-center',
         onClose: function() {}
     };
 
-    UI.notify          = notify;
-    UI.notify.message  = Message;
-    UI.notify.closeAll = closeAll;
+    UI.notify_dialog          = notify_dialog;
+    UI.notify_dialog.message  = Message;
+    UI.notify_dialog.closeAll = closeAll;
 
-    return notify;
+    return notify_dialog;
 });

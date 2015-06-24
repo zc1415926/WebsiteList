@@ -80,14 +80,18 @@
             }*/
 
             var strConfirm = "Save new catagory order?" +
-                     "<a href='#' class='uk-icon-small uk-icon-hover uk-icon-close uk-margin-large-left uk-margin-small-right '></a>" +
-                     "<a onclick='onSaveCatagoryClicked()' href='#' class='uk-icon-small'><i class='uk-icon-check'></i></a>";
+                     "<a onclick='onCancelSaveCatagoryClicked()' class='uk-icon-small uk-icon-hover uk-icon-close uk-margin-large-left uk-margin-small-right '></a>" +
+                     "<a onclick='onSaveCatagoryClicked()' class='uk-notify-message-danger uk-icon-small'><i class='uk-icon-check'></i></a>";
 
-            UIkit.notify(strConfirm, {timeout: 0, status: 'danger'});
+            UIkit.notify.closeAll();
+            UIkit.notify_dialog.closeAll();
+            UIkit.notify_dialog(strConfirm, {timeout: 0, status: 'danger'});
         });
 
         function onSaveCatagoryClicked()
         {
+            UIkit.notify_dialog.closeAll();
+
             $.ajax({
                 type: "post",
                 url: "/catagory/reorder",
@@ -109,6 +113,12 @@
                     console.log(data);
                 }
             })
+        }
+
+        function onCancelSaveCatagoryClicked()
+        {
+            UIkit.notify_dialog.closeAll();
+            location.reload();
         }
 
         /**
