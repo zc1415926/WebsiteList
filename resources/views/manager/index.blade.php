@@ -143,18 +143,27 @@
             $('#modalEditCatagory h2').text("Reanem the Catagory: " + catagory_name);
             $('#modalEditCatagory #catagory_name').val(catagory_name);
             $('#modalEditCatagory #catagory_id').val(catagory_id);
+            $('#form-edit-catagory .uk-button-primary').attr('onclick', 'onEditCatagorySubmit("'+catagory_name.toString()+'")')
             UIkit.modal("#modalEditCatagory").show();
         }
 
-        function onEditCatagorySubmit()
+        function onEditCatagorySubmit(catagory_name)
         {
-            if($('#form-edit-catagory').valid())
+            //文本框里的文字
+            if($('#modalEditCatagory #catagory_name').val() == catagory_name)
             {
-                $('#form-edit-catagory').submit();
+                UIkit.notify("New name is same as the old one!", 'warning');
             }
             else
             {
-                UIkit.notify("Please fill the form correctly!", 'danger');
+                if($('#form-edit-catagory').valid())
+                {
+                    $('#form-edit-catagory').submit();
+                }
+                else
+                {
+                    UIkit.notify("Please fill the form correctly!", 'danger');
+                }
             }
         }
 
