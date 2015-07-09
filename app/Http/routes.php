@@ -49,3 +49,8 @@ Route::post('catagory/reorder', array(
     'as' => 'catagory.reorder',
     'uses' => 'CatagoryController@reorder'
 ));
+
+Route::get('lists/{catagory}', array(
+    'as' => 'lists.index',
+    'uses' => 'ListController@index'
+));

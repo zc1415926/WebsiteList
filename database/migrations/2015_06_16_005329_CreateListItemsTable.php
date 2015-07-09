@@ -18,6 +18,11 @@ class CreateListItemsTable extends Migration
             $table->string('list_item_name');
             $table->string('list_item_url');
             $table->timestamps();
+
+            $table->foreign('catagory_id')
+                  ->references('id')
+                  ->on('catagories')
+                  ->onDelete('cascade');
         });
     }
 

@@ -44,6 +44,8 @@
                        onclick="onEditCatatoryClicked('{{ $catagory->id }}', '{{ $catagory->catagory_name }}')"></a>
                     <a href="#" class="uk-icon-hover uk-icon-close uk-margin-small-left"
                        onclick="onDeleteCatagoryClicked('{{ $catagory->id }}', '{{ $catagory->catagory_name }}')"></a>
+                    <a href="/lists/{{ $catagory->id }}" class="uk-icon-hover uk-icon-arrow-right uk-margin-small-left"
+                       onclick=""></a>
                 </div>
             </li>
 
