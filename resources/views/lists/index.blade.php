@@ -26,4 +26,74 @@
         </li>
     </ul>
 
+    <!-- Add list item modal begin -->
+    <div id="modalAddListitem" class="uk-modal" aria-hidden="true" style="display: none; overflow-y: scroll;">
+        <div class="uk-modal-dialog">
+            <button type="button" class="uk-modal-close uk-close"></button>
+            <div class="uk-modal-header">
+                <h2>Add New List Item</h2>
+            </div>
+            <form method="post" action="/listitem/add" id="formAddListitem" class="uk-form">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="category_id" value="{{ $catagory_id }}">
+
+                <label class="uk-form-label" for="txtListitemName">New List Item Name: </label>
+                <div class="uk-form-controls">
+                    <input id="txtListitemName" name="txtListitemName" class="uk-form-width-large" type="text"
+                           placeholder="Enter your new list item name here.">
+                </div>
+
+                <label class="uk-form-label" for="txtListitemUrl">New List Item URL: </label>
+                <div class="uk-form-controls">
+                    <input id="txtListitemUrl" name="txtListitemUrl" class="uk-form-width-large" type="text"
+                           placeholder="Enter your new list item url here.">
+                </div>
+
+                <div class="uk-modal-footer uk-text-right zc-modal-form-footer">
+                    <button type="button" class="uk-button uk-modal-close">Cancel</button>
+                    <button type="button" class="uk-button uk-button-primary" onclick="onAddListitemSubmit()">Add</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <!-- Add list item modal end -->
+
+    <script>
+        function onAddListItemClicked()
+        {
+            UIkit.modal("#modalAddListitem").show();
+        }
+        function onAddListitemSubmit()
+        {
+            if($('#formAddListitem').valid())
+            {
+                $('#formAddListitem').submit();
+            }
+            else
+            {
+                UIkit.notify("Please check the info you entered!", 'danger');
+            }
+        }
+
+        /**
+         * JQueryValidation part
+         */
+        $(document).ready(function()
+        {
+            $.validator.messages.required = "";
+
+            $('#formAddListitem').validate(
+                    {
+                        rules:
+                        {
+                            //这里填的是input中的name属性值
+                            'txtListitemName':"required",
+                            'txtListitemUrl':"required"
+                        }
+                    }
+            );
+
+        });
+    </script>
 @stop

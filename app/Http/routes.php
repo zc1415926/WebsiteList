@@ -54,3 +54,8 @@ Route::get('lists/{catagory}', array(
     'as' => 'lists.index',
     'uses' => 'ListController@index'
 ));
+//use listitem/add instead of lists/add to avoid lists/add hit the lists/{category} wildcard
+Route::post('listitem/add', array(
+    'as' => 'lists.add',
+    'uses' => 'ListController@add'
+));
