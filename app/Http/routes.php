@@ -59,3 +59,8 @@ Route::post('listitem/add', array(
     'as' => 'lists.add',
     'uses' => 'ListController@add'
 ));
+
+Route::post('listitem/delete', array(
+    'as' => 'lists.delete',
+    'uses' => 'ListController@delete'
+));

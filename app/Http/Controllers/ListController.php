@@ -41,4 +41,17 @@ class ListController extends Controller
         Flash::danger("Failure to add the list item!");
         return back()->withInput();
     }
+
+    public function delete(Request $request)
+    {
+        if(ListItem::destroy($request['txtDeleteListitemId']))
+        {
+            Flash::success("success to delete the list item");
+
+            return back();
+        }
+
+        Flash::danger("Failure to delete the list item");
+        return back();
+    }
 }

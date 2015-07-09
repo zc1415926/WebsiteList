@@ -59,6 +59,27 @@
     </div>
     <!-- Add list item modal end -->
 
+    <!-- Delete list item modal begin -->
+    <div id="modalDeleteListitem" class="uk-modal" aria-hidden="true" style="display: none; overflow-y: scroll;">
+        <div class="uk-modal-dialog">
+            <button type="button" class="uk-modal-close uk-close"></button>
+            <div class="uk-modal-header">
+                <h2>Confirmation</h2>
+            </div>
+            <p>Are you sure to delete the list item: </p>
+            <form method="post" action="/listitem/delete" id="formDeleteListitem" class="uk-form">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input id="txtDeleteListitemId" name="txtDeleteListitemId" type="hidden" value="">
+
+                <div class="uk-modal-footer uk-text-right zc-modal-form-footer">
+                    <button type="button" class="uk-button uk-modal-close">Cancel</button>
+                    <button type="submit" class="uk-button uk-button-danger">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Delete list item modal end -->
+
     <script>
         function onAddListItemClicked()
         {
@@ -74,6 +95,14 @@
             {
                 UIkit.notify("Please check the info you entered!", 'danger');
             }
+        }
+
+        function onDeleteListItemClicked(listId, listName)
+        {
+            $('#modalDeleteListitem p').text("Are you sure to delete the list item: " + listName);
+            $('#txtDeleteListitemId').attr('value', listId);
+
+            UIkit.modal("#modalDeleteListitem").show();
         }
 
         /**
