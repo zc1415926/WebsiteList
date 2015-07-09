@@ -7,7 +7,7 @@
 
         <ul class="uk-navbar-nav uk-visible-large">
             <li><a href="/">Home</a></li>
-            <li><a href="listmanager">List Manage</a></li>
+            <li><a href="/listmanager">List Manage</a></li>
         </ul>
         <div class="uk-navbar-content uk-hidden-small uk-navbar-flip">
             @if(!Auth::check())

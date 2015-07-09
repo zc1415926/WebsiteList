@@ -104,7 +104,7 @@ class CatagoryController extends Controller
             return redirect('listmanager');
         }
 
-        Flash::danger("Failure to delete the catagory!");
+        Flash::danger("Failure to delete the catagory!!!");
         return redirect('listmanager');
     }
 
