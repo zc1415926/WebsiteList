@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('list.index');
+    return view('index.index');
 });
 
 Route::post('auth', array(

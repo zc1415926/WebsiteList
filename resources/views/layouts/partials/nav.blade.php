@@ -1,7 +1,7 @@
 <nav class="tm-navbar uk-navbar uk-navbar-attached">
     <div class="uk-container uk-container-center">
 
-        <a class="uk-navbar-brand uk-hidden-small" href="index.html">
+        <a class="uk-navbar-brand uk-hidden-small" href="/">
             <img class="uk-margin uk-margin-remove" src="../images/logo_uikit.svg" width="90" height="30" title="UIkit" alt="UIkit">
         </a>
 
