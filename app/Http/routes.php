@@ -64,3 +64,8 @@ Route::post('listitem/delete', array(
     'as' => 'lists.delete',
     'uses' => 'ListController@delete'
 ));
+
+Route::post('listitem/edit', array(
+    'as' => 'lists.edit',
+    'uses' => 'ListController@edit'
+));

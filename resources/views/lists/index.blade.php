@@ -10,7 +10,7 @@
                     <i class="uk-sortable-handle uk-icon uk-icon-arrows uk-margin-small-right"></i>
                     <span id="{{ $list->id }}">{{ $list->list_item_name }}</span>
                     <a href="#" class="uk-icon-hover uk-icon-pencil uk-margin-small-left"
-                       onclick="onEditListItemClicked('{{ $list->id }}', '{{ $list->list_item_name }}')"></a>
+                       onclick="onEditListItemClicked('{{ $list->id }}', '{{ $list->list_item_name }}', '{{ $list->list_item_url }}')"></a>
                     <a href="#" class="uk-icon-hover uk-icon-close uk-margin-small-left"
                        onclick="onDeleteListItemClicked('{{ $list->id }}', '{{ $list->list_item_name }}')"></a>
                 </div>
@@ -80,6 +80,39 @@
     </div>
     <!-- Delete list item modal end -->
 
+    <!-- Edit list item modal begin -->
+    <div id="modalEditListitem" class="uk-modal" aria-hidden="true" style="display: none; overflow-y: scroll;">
+        <div class="uk-modal-dialog">
+            <button type="button" class="uk-modal-close uk-close"></button>
+            <div class="uk-modal-header">
+                <h2>Edit Your List Item</h2>
+            </div>
+            <form method="post" action="/listitem/edit" id="formEditListitem" class="uk-form">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input id="listId" type="hidden" name="listId" value="">
+
+                <label class="uk-form-label" for="txtListitemName">New List Item Name: </label>
+                <div class="uk-form-controls">
+                    <input id="txtListitemName" name="txtListitemName" class="uk-form-width-large" type="text"
+                           placeholder="Enter your new list item name here.">
+                </div>
+
+                <label class="uk-form-label" for="txtListitemUrl">New List Item URL: </label>
+                <div class="uk-form-controls">
+                    <input id="txtListitemUrl" name="txtListitemUrl" class="uk-form-width-large" type="text"
+                           placeholder="Enter your new list item url here.">
+                </div>
+
+                <div class="uk-modal-footer uk-text-right zc-modal-form-footer">
+                    <button type="button" class="uk-button uk-modal-close">Cancel</button>
+                    <button type="button" class="uk-button uk-button-primary" onclick="onEditListitemSubmit()">Edit</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <!-- Edit list item modal end -->
+
     <script>
         function onAddListItemClicked()
         {
@@ -105,6 +138,36 @@
             UIkit.modal("#modalDeleteListitem").show();
         }
 
+        function onEditListItemClicked(listId, listName, listUrl)
+        {
+            $('#modalEditListitem #listId').val(listId);
+            $('#modalEditListitem h2').text("Reanem the List Item: " + listName);
+            $('#modalEditListitem #txtListitemName').val(listName);
+            $('#modalEditListitem #txtListitemUrl').val(listUrl);
+            $('#formEditListitem .uk-button-primary').attr('onclick',
+                    'onEditListitemSubmit("' + listName + '","' + listUrl +'")');
+            UIkit.modal("#modalEditListitem").show();
+        }
+        function onEditListitemSubmit(listName, listUrl)
+        {
+            if($('#modalEditListitem #txtListitemName').val() == listName &&
+               $('#modalEditListitem #txtListitemUrl').val() == listUrl)
+            {
+                UIkit.notify('Name and URL are same as before!', 'warning');
+                return
+            }
+
+
+            if($('#formEditListitem').valid())
+            {
+                $('#formEditListitem').submit();
+            }
+            else
+            {
+                UIkit.notify("Please check the info you entered!", 'danger');
+            }
+        }
+
         /**
          * JQueryValidation part
          */
@@ -113,6 +176,17 @@
             $.validator.messages.required = "";
 
             $('#formAddListitem').validate(
+                    {
+                        rules:
+                        {
+                            //这里填的是input中的name属性值
+                            'txtListitemName':"required",
+                            'txtListitemUrl':"required"
+                        }
+                    }
+            );
+
+            $('#formEditListitem').validate(
                     {
                         rules:
                         {

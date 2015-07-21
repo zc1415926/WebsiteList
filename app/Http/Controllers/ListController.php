@@ -54,4 +54,17 @@ class ListController extends Controller
         Flash::danger("Failure to delete the list item");
         return back();
     }
+
+    public function edit(Request $request)
+    {
+        if(ListItem::where('id', $request['listId'])
+            ->update(['list_item_name' => $request['txtListitemName'],
+                      'list_item_url'  => $request['txtListitemUrl']]))
+        {
+            Flash::success('Success to edit the list item');
+            return back();
+        }
+        Flash::danger("Failure to edit the list item");
+        return back();
+    }
 }
